@@ -103,20 +103,29 @@ export default function Sidebar({ currentPage, onNavigate }) {
   ]
 
   return (
-    <div className={`${collapsed ? 'w-14' : 'w-64'} h-screen bg-gray-50 border-r border-gray-200 flex flex-col transition-all duration-200`}>
+    <div className={`${collapsed ? 'w-14' : 'w-64'} h-screen bg-gray-50 border-r border-gray-200 flex flex-col transition-all duration-200 shadow-sm`}>
       {/* Logo / collapsed icon */}
-      <div className={`border-b border-gray-200 bg-white flex items-center justify-between ${collapsed ? 'justify-center' : 'px-3'}`} style={{ height: '72px' }}>
+      <div className={`border-b border-gray-200 bg-white flex items-center justify-between shadow-sm ${collapsed ? 'justify-center' : 'px-3'}`} style={{ height: '72px' }}>
         {collapsed ? (
-          // When collapsed: show only the sidebar icon as the toggle (centered)
+          // When collapsed: show logo with expand icon on hover
           <button
             onClick={(e) => {
               setCollapsed(false)
               try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
             }}
-            className="w-9 h-9 flex items-center justify-center rounded-lg transition-colors hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            className="relative w-full h-full flex items-center justify-center group transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             title="Expand sidebar"
           >
-            <PanelRightClose size={20} />
+            <img
+              src="/logo.png"
+              alt="DataSense"
+              className="w-10 h-10 object-contain group-hover:opacity-0 transition-opacity"
+            />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#00764c] text-white">
+                <PanelRightClose size={20} />
+              </div>
+            </div>
           </button>
         ) : (
           <>

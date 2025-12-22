@@ -2,7 +2,7 @@ import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, 
 
 export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelectDb, onNew }) {
   return (
-    <div className="bg-white border-b border-gray-200 px-6 flex items-center" style={{ height: '72px' }}>
+    <div className="bg-white border-b border-gray-200 px-6 flex items-center shadow-sm" style={{ height: '72px' }}>
       <div className="flex items-center justify-between w-full">
         <div>
           <h1 className="text-2xl font-semibold text-gray-900">DataSense</h1>
