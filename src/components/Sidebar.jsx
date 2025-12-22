@@ -103,9 +103,9 @@ export default function Sidebar({ currentPage, onNavigate }) {
   ]
 
   return (
-    <div className={`${collapsed ? 'w-16' : 'w-64'} h-screen bg-gray-50 border-r border-gray-200 flex flex-col transition-all duration-200`}>
+    <div className={`${collapsed ? 'w-14' : 'w-64'} h-screen bg-gray-50 border-r border-gray-200 flex flex-col transition-all duration-200`}>
       {/* Logo / collapsed icon */}
-      <div className="border-b border-gray-200 bg-white flex items-center justify-between px-3" style={{ height: '72px' }}>
+      <div className={`border-b border-gray-200 bg-white flex items-center justify-between ${collapsed ? 'justify-center' : 'px-3'}`} style={{ height: '72px' }}>
         {collapsed ? (
           // When collapsed: show only the sidebar icon as the toggle (centered)
           <button
@@ -113,10 +113,10 @@ export default function Sidebar({ currentPage, onNavigate }) {
               setCollapsed(false)
               try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
             }}
-            className="w-10 h-10 flex items-center justify-center rounded-lg transition-colors hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            className="w-9 h-9 flex items-center justify-center rounded-lg transition-colors hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             title="Expand sidebar"
           >
-            <PanelRightClose size={24} />
+            <PanelRightClose size={20} />
           </button>
         ) : (
           <>
@@ -133,11 +133,11 @@ export default function Sidebar({ currentPage, onNavigate }) {
                 setCollapsed(true)
                 try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
               }}
-              className="ml-3 w-10 h-10 rounded-lg transition-colors flex items-center justify-center hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              className="ml-3 w-9 h-9 rounded-lg transition-colors flex items-center justify-center hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               title="Collapse sidebar"
               aria-pressed={collapsed}
             >
-              <PanelLeftClose size={24} />
+              <PanelLeftClose size={20} />
             </button>
           </>
         )}
