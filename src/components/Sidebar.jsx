@@ -113,10 +113,10 @@ export default function Sidebar({ currentPage, onNavigate }) {
               setCollapsed(false)
               try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
             }}
-            className="w-12 h-12 flex items-center justify-center rounded transition-colors hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            className="w-10 h-10 flex items-center justify-center rounded-lg transition-colors hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             title="Expand sidebar"
           >
-            <PanelRightClose size={22} />
+            <PanelRightClose size={20} />
           </button>
         ) : (
           <>
@@ -133,11 +133,11 @@ export default function Sidebar({ currentPage, onNavigate }) {
                 setCollapsed(true)
                 try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
               }}
-              className="ml-3 p-1 rounded transition-colors flex items-center justify-center hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              className="ml-3 w-10 h-10 rounded-lg transition-colors flex items-center justify-center hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               title="Collapse sidebar"
               aria-pressed={collapsed}
             >
-              <PanelLeftClose size={18} />
+              <PanelLeftClose size={20} />
             </button>
           </>
         )}
