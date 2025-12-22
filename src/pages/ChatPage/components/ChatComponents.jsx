@@ -2,11 +2,11 @@ import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, 
 
 export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelectDb, onNew }) {
   return (
-    <div className="bg-white border-b border-gray-200 px-6 py-3">
-      <div className="flex items-center justify-between">
+    <div className="bg-white border-b border-gray-200 px-6 flex items-center" style={{ height: '72px' }}>
+      <div className="flex items-center justify-between w-full">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">AI Chat Assistant</h1>
-          <p className="text-sm text-gray-500 mt-1">Ask questions about your data</p>
+          <h1 className="text-2xl font-semibold text-gray-900">DataSense</h1>
+          <p className="text-sm text-gray-500 mt-1">Making Sense of Data</p>
         </div>
 
         <div className="flex items-center gap-3">
@@ -89,7 +89,7 @@ export function LoadingIndicator({ loading, onStop }) {
 
 export function InputBar({ input, setInput, onSubmit, disabled, loading }) {
   return (
-    <div className="bg-white border-t border-gray-200 px-6 py-3">
+    <div className="px-6 py-3">
       <div className="max-w-5xl mx-auto">
         <form onSubmit={onSubmit} className="flex gap-3">
           <input 
@@ -98,12 +98,12 @@ export function InputBar({ input, setInput, onSubmit, disabled, loading }) {
             onChange={(e) => setInput(e.target.value)} 
             placeholder="Ask a question..." 
             disabled={disabled} 
-            className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00764c] disabled:bg-gray-100" 
+            className="flex-1 px-6 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#00764c] disabled:bg-gray-100" 
           />
           <button 
             type="submit" 
             disabled={loading || !input.trim() || disabled} 
-            className="px-4 py-2 text-white rounded-lg disabled:opacity-50 transition-colors flex items-center gap-2"
+            className="px-5 py-3 text-white rounded-full disabled:opacity-50 transition-colors flex items-center gap-2"
             style={{ backgroundColor: '#00764c' }}
           >
             {loading ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}
