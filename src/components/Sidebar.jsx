@@ -116,7 +116,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
             className="w-10 h-10 flex items-center justify-center rounded-lg transition-colors hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
             title="Expand sidebar"
           >
-            <PanelRightClose size={20} />
+            <PanelRightClose size={24} />
           </button>
         ) : (
           <>
@@ -137,7 +137,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
               title="Collapse sidebar"
               aria-pressed={collapsed}
             >
-              <PanelLeftClose size={20} />
+              <PanelLeftClose size={24} />
             </button>
           </>
         )}
@@ -165,9 +165,9 @@ export default function Sidebar({ currentPage, onNavigate }) {
                 isActive
                   ? 'bg-green-100 text-emerald-700 font-medium'
                   : 'text-gray-700 hover:bg-gray-200 font-normal'
-              }`}
+              } ${collapsed ? 'justify-center' : ''}`}
             >
-              <span className="w-6 flex-shrink-0 flex items-center justify-center">
+              <span className={`${collapsed ? '' : 'w-6'} flex-shrink-0 flex items-center justify-center`}>
                 <Icon size={18} />
               </span>
               <span className={`${collapsed ? 'hidden' : 'block'} truncate`}>{item.label}</span>

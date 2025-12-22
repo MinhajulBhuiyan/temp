@@ -1,4 +1,4 @@
-import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, Trash2 } from 'lucide-react'
+import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, Trash2, ArrowRight } from 'lucide-react'
 
 export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelectDb, onNew }) {
   return (
@@ -89,24 +89,24 @@ export function LoadingIndicator({ loading, onStop }) {
 
 export function InputBar({ input, setInput, onSubmit, disabled, loading }) {
   return (
-    <div className="px-6 py-3">
+    <div className="px-6 pb-6 pt-2">
       <div className="max-w-5xl mx-auto">
-        <form onSubmit={onSubmit} className="flex gap-3">
+        <form onSubmit={onSubmit} className="relative">
           <input 
             type="text" 
             value={input} 
             onChange={(e) => setInput(e.target.value)} 
             placeholder="Ask a question..." 
             disabled={disabled} 
-            className="flex-1 px-6 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#00764c] disabled:bg-gray-100" 
+            className="w-full pl-6 pr-16 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#00764c] disabled:bg-gray-100" 
           />
           <button 
             type="submit" 
             disabled={loading || !input.trim() || disabled} 
-            className="px-5 py-3 text-white rounded-full disabled:opacity-50 transition-colors flex items-center gap-2"
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 text-white rounded-full disabled:opacity-50 transition-colors flex items-center justify-center"
             style={{ backgroundColor: '#00764c' }}
           >
-            {loading ? <Loader2 size={20} className="animate-spin" /> : <Send size={20} />}
+            {loading ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
           </button>
         </form>
       </div>
