@@ -1,9 +1,14 @@
+import { Settings, CheckCircle2 } from 'lucide-react'
+
 export default function SettingsPage() {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
       <div className="border-b border-gray-200 bg-white px-8 py-6">
-        <h1 className="text-3xl font-semibold text-gray-900">⚙️ Settings</h1>
+        <h1 className="text-3xl font-semibold text-gray-900 flex items-center gap-2">
+          <Settings className="w-8 h-8" />
+          Settings
+        </h1>
       </div>
 
       {/* Content */}
@@ -24,7 +29,10 @@ export default function SettingsPage() {
 
             <div className="bg-white border border-gray-200 rounded-lg p-6">
               <div className="text-sm text-gray-500 mb-1">Status</div>
-              <div className="text-lg font-semibold text-green-600">✅ Operational</div>
+              <div className="text-lg font-semibold text-green-600 flex items-center gap-2">
+                <CheckCircle2 className="w-5 h-5" />
+                Operational
+              </div>
             </div>
 
             <div className="bg-white border border-gray-200 rounded-lg p-6">
@@ -35,9 +43,10 @@ export default function SettingsPage() {
 
           <div className="border-t border-gray-200 pt-8">
             <h2 className="text-xl font-semibold mb-4">Configuration</h2>
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <p className="text-gray-600">
-                ⚙️ Advanced settings and configuration options coming in Week 2
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#ecf7f1', borderColor: '#e6efe9', borderWidth: '1px' }}>
+              <p className="text-gray-600 flex items-center gap-2">
+                <Settings className="w-5 h-5" style={{ color: '#00764c' }} />
+                Advanced settings and configuration options coming in Week 2
               </p>
             </div>
           </div>
