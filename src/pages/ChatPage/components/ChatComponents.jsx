@@ -10,7 +10,11 @@ export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelect
         </div>
 
         <div className="flex items-center gap-3">
-          <button onClick={toggleShowSQL} className="px-3 py-2 text-sm text-gray-600 hover:bg-gray-100 rounded-lg flex items-center gap-2">
+          <button
+            onClick={toggleShowSQL}
+            className="px-3 py-2 text-sm text-gray-700 bg-gray-50 rounded-lg flex items-center gap-2 transition-colors duration-150 ease-in-out hover:bg-[#dbfce7] hover:shadow-sm hover:text-[#00764c] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200"
+            style={{ boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.03)' }}
+          >
             {showSQL ? <Eye size={16} /> : <EyeOff size={16} />}
             <span className="text-xs">{showSQL ? 'Hide' : 'Show'} SQL</span>
           </button>
