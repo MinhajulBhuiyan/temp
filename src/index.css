@@ -1,3 +1,4 @@
+/* stylelint-disable */
 @import "tailwindcss";
 
 @theme {
@@ -37,5 +38,29 @@
 body {
   background-color: var(--bg);
   color: var(--fg);
+}
+
+/* Custom Scrollbar */
+* {
+  scrollbar-width: auto;
+  scrollbar-color: #188e49 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #188e49;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #21c063;
 }
 

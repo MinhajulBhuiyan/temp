@@ -173,7 +173,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
               style={{
                 backgroundColor: isActive ? 'rgba(0, 118, 76, 0.1)' : 'transparent',
                 color: isActive ? '#188e49' : 'var(--fg)',
-                fontWeight: isActive ? 500 : 400
+                fontWeight: isActive ? 650 : 400
               }}
             >
               <span className={`${collapsed ? '' : 'w-6'} flex-shrink-0 flex items-center justify-center`}>
