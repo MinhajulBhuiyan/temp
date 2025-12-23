@@ -1,4 +1,4 @@
-import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, Trash2, ArrowRight } from 'lucide-react'
+import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, Trash2, ArrowRight, SquarePen } from 'lucide-react'
 
 export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelectDb, onNew }) {
   return (
@@ -39,8 +39,8 @@ export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelect
             </div>
           )}
 
-          <button onClick={onNew} className="px-4 py-2 text-white rounded-lg transition-colors flex items-center gap-2 text-sm font-semibold tracking-wide" style={{ backgroundColor: '#188e49' }}>
-            <Plus size={16} />
+          <button onClick={onNew} className="px-4 py-2 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm font-semibold tracking-wide" style={{ backgroundColor: '#188e49' }}>
+            <SquarePen size={16} strokeWidth={2.5} />
             New Chat
           </button>
         </div>
