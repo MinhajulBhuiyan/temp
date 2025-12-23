@@ -75,7 +75,7 @@ export default function ChatPageContainer() {
 					{!chat.loadingHistory && chat.messages.length === 0 && (
 						<div className="flex flex-col items-center justify-center py-12">
 							<div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6" style={{ backgroundColor: 'rgba(0, 118, 76, 0.1)' }}>
-								<Database size={40} style={{ color: '#21c063' }} />
+								<Database size={40} style={{ color: '#188e49' }} />
 							</div>
 							<h2 className="text-2xl font-semibold mb-3" style={{ color: 'var(--fg)' }}>Start a conversation</h2>
 							<p className="mb-10" style={{ color: 'var(--muted-fg)' }}>Ask me anything about your data</p>

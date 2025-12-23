@@ -26,7 +26,7 @@ export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelect
               <select 
                 value={selectedDb} 
                 onChange={(e) => onSelectDb(e.target.value)} 
-                className="px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#21c063]"
+                className="px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#188e49]"
                 style={{ backgroundColor: 'var(--card-bg)', color: 'var(--fg)', border: '1px solid var(--border-color)' }}
               >
                 {databases.map(db => (
@@ -107,14 +107,14 @@ export function InputBar({ input, setInput, onSubmit, disabled, loading }) {
             onChange={(e) => setInput(e.target.value)} 
             placeholder="Ask a question..." 
             disabled={disabled} 
-            className="w-full pl-6 pr-16 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-[#21c063] disabled:opacity-50" 
+            className="w-full pl-6 pr-16 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-[#188e49] disabled:opacity-50" 
             style={{ backgroundColor: 'var(--card-bg)', color: 'var(--fg)', border: '1px solid var(--border-color)' }}
           />
           <button 
             type="submit" 
             disabled={loading || !input.trim() || disabled} 
             className="absolute right-2 top-1/2 -translate-y-1/2 w-9 h-9 text-white rounded-full disabled:opacity-50 transition-colors flex items-center justify-center"
-            style={{ backgroundColor: '#21c063' }}
+            style={{ backgroundColor: '#188e49' }}
           >
             {loading ? <Loader2 size={18} className="animate-spin" /> : <ArrowRight size={18} />}
           </button>

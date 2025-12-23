@@ -172,7 +172,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
               className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm transition-colors mb-0.5 ${collapsed ? 'justify-center' : ''}`}
               style={{
                 backgroundColor: isActive ? 'rgba(0, 118, 76, 0.1)' : 'transparent',
-                color: isActive ? '#21c063' : 'var(--fg)',
+                color: isActive ? '#188e49' : 'var(--fg)',
                 fontWeight: isActive ? 500 : 400
               }}
             >
