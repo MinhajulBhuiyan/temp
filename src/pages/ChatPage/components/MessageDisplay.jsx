@@ -23,7 +23,7 @@ export function MessageBubble({ message, messageIndex, showSQL, onToggleLogScale
   if (message.type === 'user') {
     return (
       <div className="flex justify-end">
-        <div style={{ backgroundColor: '#00764c' }} className="text-white px-4 py-2 rounded-2xl rounded-tr-sm max-w-2xl text-sm">
+        <div style={{ backgroundColor: '#21c063' }} className="text-white px-4 py-2 rounded-2xl rounded-tr-sm max-w-2xl text-sm">
           {message.content}
         </div>
       </div>
@@ -50,7 +50,7 @@ export function MessageBubble({ message, messageIndex, showSQL, onToggleLogScale
           <p className="text-sm font-medium" style={{ color: 'var(--muted-fg)' }}>📊 {data.question}</p>
           <button 
             onClick={() => onRerun(data.question)} 
-            className="hover:text-[#00764c] transition-colors" 
+            className="hover:text-[#21c063] transition-colors" 
             style={{ color: 'var(--muted-fg)' }}
             title="Re-run"
           >
@@ -88,11 +88,11 @@ export function MessageBubble({ message, messageIndex, showSQL, onToggleLogScale
         ) : data.success && data.isHistorical ? (
           <div className="px-4 py-3">
             <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--muted-fg)' }}>
-              <AlertCircle size={16} className="text-[#00764c]" />
+              <AlertCircle size={16} className="text-[#21c063]" />
               <span>No stored results ({data.execution_time_ms}ms, {data.row_count} rows)</span>
               <button 
                 onClick={() => onRerun(data.question)} 
-                className="ml-auto text-xs text-[#00764c] hover:text-[#005a3e] underline"
+                className="ml-auto text-xs text-[#21c063] hover:text-[#005a3e] underline"
               >
                 Re-run to see data →
               </button>

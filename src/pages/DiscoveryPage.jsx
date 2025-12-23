@@ -106,7 +106,7 @@ export default function DiscoveryPage() {
       {/* Header */}
       <div className="px-8 py-6" style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
         <h1 className="text-3xl font-semibold flex items-center gap-3" style={{ color: 'var(--fg)' }}>
-          <Database size={28} style={{ color: '#00764c' }} />
+          <Database size={28} style={{ color: '#21c063' }} />
           Database Discovery
         </h1>
       </div>
@@ -121,7 +121,7 @@ export default function DiscoveryPage() {
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
                 activeTab === tab ? 'border-transparent' : 'border-transparent hover:opacity-80'
               }`}
-              style={activeTab === tab ? { color: '#00764c', borderBottomColor: '#00764c' } : { color: 'var(--muted-fg)' }}
+              style={activeTab === tab ? { color: '#21c063', borderBottomColor: '#21c063' } : { color: 'var(--muted-fg)' }}
             >
               {tab === 'databases' && (
                 <>
@@ -231,7 +231,7 @@ export default function DiscoveryPage() {
                         <div className="flex gap-3">
                           <button
                             onClick={() => startDiscovery(db.source_id)}
-                            style={{ backgroundColor: '#00764c' }}
+                            style={{ backgroundColor: '#21c063' }}
                             className="px-4 py-2 text-white rounded-lg hover:brightness-90 transition-colors text-sm flex items-center gap-2"
                           >
                             <RefreshCw size={16} />
@@ -299,7 +299,7 @@ export default function DiscoveryPage() {
               </p>
               <button
                 onClick={quickAddDataSense}
-                style={{ backgroundColor: '#00764c' }}
+                style={{ backgroundColor: '#21c063' }}
                 className="px-6 py-3 text-white rounded-lg hover:brightness-90 transition-colors font-medium"
               >
                 Quick Add DataSense Database
