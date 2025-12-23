@@ -132,8 +132,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
             <img
               src="/logo.png"
               alt="DataSense"
-              className="w-48 h-auto object-contain"
-              style={{ maxHeight: '48px' }}
+              className="w-12 h-12 object-contain ml-2"
             />
 
             {/* collapse toggle to the right of the logo */}
@@ -142,7 +141,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
                 setCollapsed(true)
                 try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
               }}
-              className="ml-3 w-9 h-9 rounded-lg transition-colors flex items-center justify-center hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              className="ml-auto w-9 h-9 rounded-lg transition-colors flex items-center justify-center hover:bg-[#00764c] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               title="Collapse sidebar"
               aria-pressed={collapsed}
             >
