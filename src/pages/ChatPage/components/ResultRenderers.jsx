@@ -34,8 +34,8 @@ export function ChartView({ data, useLogScale, onToggleLogScale }) {
   return (
     <div>
       <div className="flex items-center gap-2 mb-4">
-        <BarChart3 size={16} className="text-gray-600" />
-        <span className="text-xs font-semibold text-gray-600 uppercase">Chart ({data.row_count} • {data.execution_time_ms}ms)</span>
+        <BarChart3 size={16} style={{ color: 'var(--muted-fg)' }} />
+        <span className="text-xs font-semibold uppercase" style={{ color: 'var(--muted-fg)' }}>Chart ({data.row_count} • {data.execution_time_ms}ms)</span>
       </div>
 
       {hasLargeVariation && !useLogScale && (
@@ -70,24 +70,24 @@ export function TableView({ data }) {
   return (
     <>
       <div className="flex items-center gap-2 mb-3">
-        <Table size={16} className="text-gray-600" />
-        <span className="text-xs font-semibold text-gray-600 uppercase">Results ({data.row_count} rows • {data.execution_time_ms}ms)</span>
+        <Table size={16} style={{ color: 'var(--muted-fg)' }} />
+        <span className="text-xs font-semibold uppercase" style={{ color: 'var(--muted-fg)' }}>Results ({data.row_count} rows • {data.execution_time_ms}ms)</span>
       </div>
 
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm">
           <thead>
-            <tr className="border-b border-gray-200">
+            <tr style={{ borderBottom: '1px solid var(--border-color)' }}>
               {data.columns.map((col, idx) => (
-                <th key={idx} className="text-left py-2 px-3 font-semibold text-gray-700">{col.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</th>
+                <th key={idx} className="text-left py-2 px-3 font-semibold" style={{ color: 'var(--fg)' }}>{col.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {data.results.slice(0, 10).map((row, idx) => (
-              <tr key={idx} className="border-b border-gray-100 hover:bg-gray-50">
+              <tr key={idx} className="hover:opacity-80" style={{ borderBottom: '1px solid var(--border-color)' }}>
                 {data.columns.map((col, colIdx) => (
-                  <td key={colIdx} className="py-2 px-3 text-gray-900">{formatValue(row[col], col)}</td>
+                  <td key={colIdx} className="py-2 px-3" style={{ color: 'var(--fg)' }}>{formatValue(row[col], col)}</td>
                 ))}
               </tr>
             ))}
@@ -95,7 +95,7 @@ export function TableView({ data }) {
         </table>
       </div>
 
-      {data.row_count > 10 && <p className="text-xs text-gray-500 mt-3">Showing 10 of {data.row_count} rows</p>}
+      {data.row_count > 10 && <p className="text-xs mt-3" style={{ color: 'var(--muted-fg)' }}>Showing 10 of {data.row_count} rows</p>}
     </>
   )
 }

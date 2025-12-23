@@ -29,8 +29,8 @@ function RecentConversations({ onOpen, collapsed }) {
   if (collapsed) return null
 
   if (loading) return (
-    <div className="px-4 py-3 border-b border-gray-200">
-      <div className="text-sm text-gray-500">Loading recent...</div>
+    <div className="px-4 py-3 border-b" style={{ borderColor: 'var(--border-color)' }}>
+      <div className="text-sm" style={{ color: 'var(--muted-fg)' }}>Loading recent...</div>
     </div>
   )
 
@@ -41,21 +41,21 @@ function RecentConversations({ onOpen, collapsed }) {
       {/* fixed header */}
       <div className="px-3 py-2 flex-none">
         <div className="flex items-center gap-2">
-          <MessageSquare size={18} className="text-gray-600" />
-          <h3 className="font-semibold text-gray-900">Recent Conversations</h3>
+          <MessageSquare size={18} style={{ color: 'var(--muted-fg)' }} />
+          <h3 className="font-semibold" style={{ color: 'var(--fg)' }}>Recent Conversations</h3>
         </div>
       </div>
 
       {/* scrollable list */}
       <div className="flex-1 overflow-y-auto p-3 pb-4 space-y-2">
         {convs.map((conv) => (
-          <div key={conv.conversation_id} className={`relative group px-3 py-2 rounded-lg border transition-colors cursor-pointer bg-gray-50 border-gray-200 hover:bg-blue-50 hover:border-blue-300`}>
+          <div key={conv.conversation_id} className="relative group px-3 py-2 rounded-lg border transition-colors cursor-pointer hover:opacity-80" style={{ backgroundColor: 'var(--muted-bg)', borderColor: 'var(--border-color)' }}>
             <button
               onClick={() => { localStorage.setItem('openConversationId', conv.conversation_id); onOpen && onOpen(conv.conversation_id) }}
               className="w-full text-left"
             >
-              <p className="text-sm text-gray-900 font-medium line-clamp-2 pr-8">{conv.title || 'Untitled'}</p>
-              <div className="flex items-center justify-between mt-1 text-xs text-gray-500">
+              <p className="text-sm font-medium line-clamp-2 pr-8" style={{ color: 'var(--fg)' }}>{conv.title || 'Untitled'}</p>
+              <div className="flex items-center justify-between mt-1 text-xs" style={{ color: 'var(--muted-fg)' }}>
                 <span>{conv.query_count} queries</span>
                 <span>{new Date(conv.updated_at).toLocaleDateString()}</span>
               </div>
@@ -103,9 +103,9 @@ export default function Sidebar({ currentPage, onNavigate }) {
   ]
 
   return (
-    <div className={`${collapsed ? 'w-14' : 'w-64'} h-screen bg-gray-50 border-r border-gray-200 flex flex-col transition-all duration-200 shadow-sm`}>
+    <div className={`${collapsed ? 'w-14' : 'w-64'} h-screen flex flex-col transition-all duration-200 shadow-sm`} style={{ backgroundColor: 'var(--muted-bg)', borderRight: '1px solid var(--border-color)' }}>
       {/* Logo / collapsed icon */}
-      <div className={`border-b border-gray-200 bg-white flex items-center justify-between shadow-sm ${collapsed ? 'justify-center' : 'px-3'}`} style={{ height: '72px' }}>
+      <div className={`flex items-center justify-between shadow-sm ${collapsed ? 'justify-center' : 'px-3'}`} style={{ height: '72px', borderBottom: '1px solid var(--border-color)', backgroundColor: 'var(--card-bg)' }}>
         {collapsed ? (
           // When collapsed: show logo with expand icon on hover
           <button
@@ -159,7 +159,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
       {/* small spacer to separate recent conversations from bottom nav */}
       <div className={`${collapsed ? 'h-4' : 'h-0'} flex-none`} aria-hidden="true" />
 
-      <nav className="p-2 flex-none sticky bottom-0 bg-gray-50 border-t border-gray-200">
+      <nav className="p-2 flex-none sticky bottom-0" style={{ backgroundColor: 'var(--muted-bg)', borderTop: '1px solid var(--border-color)' }}>
         {navItems.map((item) => {
           const Icon = item.icon
           const isActive = currentPage === item.id
@@ -169,11 +169,12 @@ export default function Sidebar({ currentPage, onNavigate }) {
               key={item.id}
               onClick={() => onNavigate(item.id)}
               title={item.label}
-              className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm transition-colors mb-0.5 ${
-                isActive
-                  ? 'bg-green-100 text-emerald-700 font-medium'
-                  : 'text-gray-700 hover:bg-gray-200 font-normal'
-              } ${collapsed ? 'justify-center' : ''}`}
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm transition-colors mb-0.5 ${collapsed ? 'justify-center' : ''}`}
+              style={{
+                backgroundColor: isActive ? 'rgba(0, 118, 76, 0.1)' : 'transparent',
+                color: isActive ? '#00764c' : 'var(--fg)',
+                fontWeight: isActive ? 500 : 400
+              }}
             >
               <span className={`${collapsed ? '' : 'w-6'} flex-shrink-0 flex items-center justify-center`}>
                 <Icon size={18} />

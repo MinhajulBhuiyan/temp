@@ -102,26 +102,26 @@ export default function DiscoveryPage() {
   }
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col" style={{ backgroundColor: 'var(--muted-bg)' }}>
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white px-8 py-6">
-        <h1 className="text-3xl font-semibold text-gray-900 flex items-center gap-3">
+      <div className="px-8 py-6" style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
+        <h1 className="text-3xl font-semibold flex items-center gap-3" style={{ color: 'var(--fg)' }}>
           <Database size={28} style={{ color: '#00764c' }} />
           Database Discovery
         </h1>
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-200 bg-white px-8">
+      <div className="px-8" style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
         <nav className="flex gap-8">
           {['databases', 'add', 'status'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
-                activeTab === tab ? 'border-transparent' : 'border-transparent text-gray-500 hover:text-gray-700'
+                activeTab === tab ? 'border-transparent' : 'border-transparent hover:opacity-80'
               }`}
-              style={activeTab === tab ? { color: '#00764c', borderBottomColor: '#00764c' } : undefined}
+              style={activeTab === tab ? { color: '#00764c', borderBottomColor: '#00764c' } : { color: 'var(--muted-fg)' }}
             >
               {tab === 'databases' && (
                 <>
@@ -153,10 +153,11 @@ export default function DiscoveryPage() {
         {activeTab === 'databases' && (
           <div className="max-w-5xl">
             <div className="flex justify-between items-center mb-6">
-              <h2 className="text-xl font-semibold">Connected Databases</h2>
+              <h2 className="text-xl font-semibold" style={{ color: 'var(--fg)' }}>Connected Databases</h2>
               <button
                 onClick={fetchDatabases}
-                className="px-4 py-2 text-sm text-gray-600 hover:text-gray-900 flex items-center gap-2"
+                className="px-4 py-2 text-sm flex items-center gap-2 hover:opacity-80"
+                style={{ color: 'var(--muted-fg)' }}
               >
                 <RefreshCw size={16} />
                 Refresh
@@ -164,11 +165,11 @@ export default function DiscoveryPage() {
             </div>
 
             {loading ? (
-              <div className="text-center py-12 text-gray-500">Loading...</div>
+              <div className="text-center py-12" style={{ color: 'var(--muted-fg)' }}>Loading...</div>
             ) : databases.length === 0 ? (
-              <div className="text-center py-12 bg-gray-50 rounded-lg">
-                <p className="text-gray-600">No databases connected yet.</p>
-                <p className="text-sm text-gray-500 mt-2">Add one in the "Add Database" tab.</p>
+              <div className="text-center py-12 rounded-lg" style={{ backgroundColor: 'var(--card-bg)' }}>
+                <p style={{ color: 'var(--muted-fg)' }}>No databases connected yet.</p>
+                <p className="text-sm mt-2" style={{ color: 'var(--muted-fg)' }}>Add one in the "Add Database" tab.</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -177,15 +178,15 @@ export default function DiscoveryPage() {
                   const isExpanded = expandedDb[db.source_id]
                   
                   return (
-                    <div key={db.source_id} className="border border-gray-200 rounded-lg bg-white overflow-hidden">
+                    <div key={db.source_id} className="rounded-lg overflow-hidden" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
                       <div className="p-6">
                         <div className="flex justify-between items-start mb-4">
                           <div className="flex-1">
-                            <h3 className="text-lg font-semibold text-gray-900 flex items-center gap-2">
-                              <Database size={18} className="text-gray-600" />
+                            <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: 'var(--fg)' }}>
+                              <Database size={18} style={{ color: 'var(--muted-fg)' }} />
                               {db.name} ({db.db_type.toUpperCase()})
                             </h3>
-                            <p className="text-sm text-gray-500 mt-1">
+                            <p className="text-sm mt-1" style={{ color: 'var(--muted-fg)' }}>
                               {db.host}:{db.port} / {db.database}
                             </p>
                           </div>
@@ -208,20 +209,20 @@ export default function DiscoveryPage() {
 
                         <div className="grid grid-cols-3 gap-4 mb-4 text-sm">
                           <div>
-                            <span className="text-gray-500">Discovered:</span>
-                            <span className="ml-2 text-gray-900">
+                            <span style={{ color: 'var(--muted-fg)' }}>Discovered:</span>
+                            <span className="ml-2" style={{ color: 'var(--fg)' }}>
                               {db.discovered_at ? new Date(db.discovered_at).toLocaleString() : 'N/A'}
                             </span>
                           </div>
                           <div>
-                            <span className="text-gray-500">Tables:</span>
-                            <span className="ml-2 text-gray-900 font-semibold">
+                            <span style={{ color: 'var(--muted-fg)' }}>Tables:</span>
+                            <span className="ml-2 font-semibold" style={{ color: 'var(--fg)' }}>
                               {tables.length}
                             </span>
                           </div>
                           <div>
-                            <span className="text-gray-500">Total Rows:</span>
-                            <span className="ml-2 text-gray-900 font-semibold">
+                            <span style={{ color: 'var(--muted-fg)' }}>Total Rows:</span>
+                            <span className="ml-2 font-semibold" style={{ color: 'var(--fg)' }}>
                               {tables.reduce((sum, t) => sum + t.row_count, 0).toLocaleString()}
                             </span>
                           </div>
@@ -248,7 +249,8 @@ export default function DiscoveryPage() {
                           {tables.length > 0 && (
                             <button
                               onClick={() => toggleExpanded(db.source_id)}
-                              className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors text-sm flex items-center gap-2"
+                              className="px-4 py-2 rounded-lg transition-colors text-sm flex items-center gap-2"
+                              style={{ backgroundColor: 'var(--muted-bg)', color: 'var(--fg)' }}
                             >
                               {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                               {isExpanded ? 'Hide' : 'Show'} Tables
@@ -259,15 +261,15 @@ export default function DiscoveryPage() {
 
                       {/* Tables List */}
                       {isExpanded && tables.length > 0 && (
-                        <div className="border-t border-gray-200 bg-gray-50 p-6">
-                          <h4 className="font-semibold mb-3 text-gray-900">Discovered Tables:</h4>
+                        <div className="p-6" style={{ borderTop: '1px solid var(--border-color)', backgroundColor: 'var(--muted-bg)' }}>
+                          <h4 className="font-semibold mb-3" style={{ color: 'var(--fg)' }}>Discovered Tables:</h4>
                           <div className="space-y-2 max-h-96 overflow-y-auto">
                             {tables.map((table, idx) => (
-                              <div key={idx} className="flex justify-between items-center bg-white px-4 py-3 rounded border border-gray-200">
+                              <div key={idx} className="flex justify-between items-center px-4 py-3 rounded" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
                                 <div>
-                                  <span className="font-medium text-gray-900">{table.table_name}</span>
+                                  <span className="font-medium" style={{ color: 'var(--fg)' }}>{table.table_name}</span>
                                 </div>
-                                <div className="flex gap-6 text-sm text-gray-600">
+                                <div className="flex gap-6 text-sm" style={{ color: 'var(--muted-fg)' }}>
                                   <span>{table.row_count.toLocaleString()} rows</span>
                                   <span>{table.column_count} columns</span>
                                 </div>
@@ -286,13 +288,13 @@ export default function DiscoveryPage() {
 
         {activeTab === 'add' && (
           <div className="max-w-2xl">
-            <h2 className="text-xl font-semibold mb-6">Add New Database</h2>
+            <h2 className="text-xl font-semibold mb-6" style={{ color: 'var(--fg)' }}>Add New Database</h2>
             
-            <div className="rounded-lg p-6 mb-8" style={{ backgroundColor: '#ecf7f1', border: '1px solid #cfe9db' }}>
-              <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+            <div className="rounded-lg p-6 mb-8" style={{ backgroundColor: 'rgba(0, 118, 76, 0.1)', border: '1px solid rgba(0, 118, 76, 0.2)' }}>
+              <h3 className="text-lg font-semibold mb-2 flex items-center gap-2" style={{ color: 'var(--fg)' }}>
                 <Zap size={16} className="text-yellow-500" /> Quick Setup
               </h3>
-              <p className="text-gray-600 text-sm mb-4">
+              <p className="text-sm mb-4" style={{ color: 'var(--muted-fg)' }}>
                 Quickly add your DataSense database with pre-configured settings.
               </p>
               <button
@@ -304,9 +306,9 @@ export default function DiscoveryPage() {
               </button>
             </div>
 
-            <div className="border-t border-gray-200 pt-8">
-              <h3 className="text-lg font-semibold mb-4">Custom Database Connection</h3>
-              <p className="text-gray-500 text-sm">
+            <div className="pt-8" style={{ borderTop: '1px solid var(--border-color)' }}>
+              <h3 className="text-lg font-semibold mb-4" style={{ color: 'var(--fg)' }}>Custom Database Connection</h3>
+              <p className="text-sm" style={{ color: 'var(--muted-fg)' }}>
                 Custom database addition API coming in Week 2
               </p>
             </div>
@@ -315,9 +317,9 @@ export default function DiscoveryPage() {
 
         {activeTab === 'status' && (
           <div className="max-w-2xl">
-            <h2 className="text-xl font-semibold mb-6">Discovery History</h2>
-            <div className="rounded-lg p-6 text-center" style={{ backgroundColor: '#ecf7f1', border: '1px solid #cfe9db' }}>
-              <p className="text-gray-600 flex items-center justify-center gap-2">
+            <h2 className="text-xl font-semibold mb-6" style={{ color: 'var(--fg)' }}>Discovery History</h2>
+            <div className="rounded-lg p-6 text-center" style={{ backgroundColor: 'rgba(0, 118, 76, 0.1)', border: '1px solid rgba(0, 118, 76, 0.2)' }}>
+              <p className="flex items-center justify-center gap-2" style={{ color: 'var(--muted-fg)' }}>
                 <BarChart2 size={16} className="inline-block" />
                 Discovery history and status tracking coming soon in Week 2
               </p>

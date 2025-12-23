@@ -53,7 +53,7 @@ export default function ChatPageContainer() {
 	]
 
 	return (
-		<div className="h-full flex bg-gray-50">
+		<div className="h-full flex" style={{ backgroundColor: 'var(--muted-bg)' }}>
 			<div className="flex-1 flex flex-col">
 				<Header 
 					showSQL={showSQL} 
@@ -67,18 +67,18 @@ export default function ChatPageContainer() {
 				<div className="flex-1 overflow-y-auto px-6 py-4">
 					<div className="max-w-5xl mx-auto space-y-4">
 						{chat.loadingHistory && (
-							<div className="flex items-center justify-center gap-2 text-gray-500 py-8">
-								<LoadingIndicator loading={true} />
-							</div>
-						)}
+						<div className="flex items-center justify-center gap-2 py-8" style={{ color: 'var(--muted-fg)' }}>
+							<LoadingIndicator loading={true} />
+						</div>
+					)}
 
-						{!chat.loadingHistory && chat.messages.length === 0 && (
+					{!chat.loadingHistory && chat.messages.length === 0 && (
 						<div className="flex flex-col items-center justify-center py-12">
-							<div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6" style={{ backgroundColor: '#ecf7f1' }}>
+							<div className="inline-flex items-center justify-center w-20 h-20 rounded-full mb-6" style={{ backgroundColor: 'rgba(0, 118, 76, 0.1)' }}>
 								<Database size={40} style={{ color: '#00764c' }} />
 							</div>
-							<h2 className="text-2xl font-semibold text-gray-900 mb-3">Start a conversation</h2>
-							<p className="text-gray-500 mb-10">Ask me anything about your data</p>
+							<h2 className="text-2xl font-semibold mb-3" style={{ color: 'var(--fg)' }}>Start a conversation</h2>
+							<p className="mb-10" style={{ color: 'var(--muted-fg)' }}>Ask me anything about your data</p>
 							
 							<div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-3xl">
 								{suggestionQueries.map((query, idx) => (
@@ -86,12 +86,10 @@ export default function ChatPageContainer() {
 										key={idx}
 										onClick={() => handleSuggestionClick(query)}
 										disabled={!selectedDb}
-										className="px-6 py-4 bg-white border border-gray-200 rounded-lg text-left hover:shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-										style={{ borderColor: '#e6efe9' }}
-										onMouseEnter={e => e.currentTarget.style.borderColor = '#00764c'}
-										onMouseLeave={e => e.currentTarget.style.borderColor = '#e6efe9'}
+										className="px-6 py-4 rounded-lg text-left hover:shadow-sm transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+										style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}
 									>
-										<p className="text-gray-900 text-sm font-medium">{query}</p>
+										<p className="text-sm font-medium" style={{ color: 'var(--fg)' }}>{query}</p>
 									</button>
 								))}
 							</div>

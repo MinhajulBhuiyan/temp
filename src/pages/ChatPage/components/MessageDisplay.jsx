@@ -45,12 +45,13 @@ export function MessageBubble({ message, messageIndex, showSQL, onToggleLogScale
 
   return (
     <div className="flex justify-start">
-      <div className="bg-white border border-gray-200 rounded-2xl rounded-tl-sm max-w-4xl w-full shadow-sm">
-        <div className="px-4 py-3 border-b border-gray-100 flex items-center justify-between">
-          <p className="text-sm text-gray-600 font-medium">📊 {data.question}</p>
+      <div className="rounded-2xl rounded-tl-sm max-w-4xl w-full shadow-sm" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
+        <div className="px-4 py-3 flex items-center justify-between" style={{ borderBottom: '1px solid var(--border-color)' }}>
+          <p className="text-sm font-medium" style={{ color: 'var(--muted-fg)' }}>📊 {data.question}</p>
           <button 
             onClick={() => onRerun(data.question)} 
-            className="text-gray-400 hover:text-[#00764c] transition-colors" 
+            className="hover:text-[#00764c] transition-colors" 
+            style={{ color: 'var(--muted-fg)' }}
             title="Re-run"
           >
             <RefreshCw size={16} />
@@ -58,15 +59,15 @@ export function MessageBubble({ message, messageIndex, showSQL, onToggleLogScale
         </div>
 
         {showSQL && data.sql && (
-          <div className="px-4 py-3 border-b border-gray-100 bg-gray-50">
+          <div className="px-4 py-3" style={{ borderBottom: '1px solid var(--border-color)', backgroundColor: 'var(--muted-bg)' }}>
             <div className="flex items-center gap-2 mb-1">
-              <Code size={16} className="text-gray-600" />
-              <span className="text-xs font-semibold text-gray-600 uppercase">SQL</span>
+              <Code size={16} style={{ color: 'var(--muted-fg)' }} />
+              <span className="text-xs font-semibold uppercase" style={{ color: 'var(--muted-fg)' }}>SQL</span>
               {data.explanation && (
-                <span className="text-xs text-gray-500 ml-auto">{data.explanation}</span>
+                <span className="text-xs ml-auto" style={{ color: 'var(--muted-fg)' }}>{data.explanation}</span>
               )}
             </div>
-            <pre className="text-xs text-gray-700 font-mono bg-white p-3 rounded border border-gray-200 overflow-x-auto">
+            <pre className="text-xs font-mono p-3 rounded overflow-x-auto" style={{ backgroundColor: 'var(--card-bg)', color: 'var(--fg)', border: '1px solid var(--border-color)' }}>
               {data.sql}
             </pre>
           </div>
@@ -86,7 +87,7 @@ export function MessageBubble({ message, messageIndex, showSQL, onToggleLogScale
           </div>
         ) : data.success && data.isHistorical ? (
           <div className="px-4 py-3">
-            <div className="flex items-center gap-2 text-sm text-gray-600">
+            <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--muted-fg)' }}>
               <AlertCircle size={16} className="text-[#00764c]" />
               <span>No stored results ({data.execution_time_ms}ms, {data.row_count} rows)</span>
               <button 

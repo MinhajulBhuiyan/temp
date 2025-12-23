@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar'
 import ChatPage from './pages/ChatPage'
 import DiscoveryPage from './pages/DiscoveryPage'
 import SettingsPage from './pages/SettingsPage'
+import { ThemeProvider } from './contexts/ThemeProvider'
 import './index.css'
 
 function App() {
@@ -22,12 +23,14 @@ function App() {
   }
 
   return (
-    <div className="flex h-screen bg-white">
-      <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
-      <main className="flex-1 overflow-hidden">
-        {renderPage()}
-      </main>
-    </div>
+    <ThemeProvider>
+      <div className="flex h-screen" style={{ backgroundColor: 'var(--bg)' }}>
+        <Sidebar currentPage={currentPage} onNavigate={setCurrentPage} />
+        <main className="flex-1 overflow-hidden">
+          {renderPage()}
+        </main>
+      </div>
+    </ThemeProvider>
   )
 }
 

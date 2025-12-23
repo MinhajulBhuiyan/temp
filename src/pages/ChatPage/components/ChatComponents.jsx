@@ -2,18 +2,18 @@ import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, 
 
 export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelectDb, onNew }) {
   return (
-    <div className="bg-white border-b border-gray-200 px-6 flex items-center shadow-sm" style={{ height: '72px' }}>
+    <div className="px-6 flex items-center shadow-sm" style={{ height: '72px', backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
       <div className="flex items-center justify-between w-full">
         <div>
-          <h1 className="text-2xl font-semibold text-gray-900">DataSense</h1>
-          <p className="text-sm text-gray-500 mt-1">Making Sense of Data</p>
+          <h1 className="text-2xl font-semibold" style={{ color: 'var(--fg)' }}>DataSense</h1>
+          <p className="text-sm mt-1" style={{ color: 'var(--muted-fg)' }}>Making Sense of Data</p>
         </div>
 
         <div className="flex items-center gap-3">
           <button
             onClick={toggleShowSQL}
-            className="px-3 py-2 text-sm text-gray-700 bg-gray-50 rounded-lg flex items-center gap-2 transition-colors duration-150 ease-in-out hover:bg-[#dbfce7] hover:shadow-sm hover:text-[#00764c] focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200"
-            style={{ boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.03)' }}
+            className="px-3 py-2 text-sm rounded-lg flex items-center gap-2 transition-colors duration-150 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200"
+            style={{ backgroundColor: 'var(--muted-bg)', color: 'var(--fg)' }}
           >
             {showSQL ? <Eye size={16} /> : <EyeOff size={16} />}
             <span className="text-xs">{showSQL ? 'Hide' : 'Show'} SQL</span>
@@ -22,8 +22,13 @@ export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelect
           {/* {databases.length > 0 && ( */}
           {Array.isArray(databases) && databases.length > 0 && (
             <div className="flex items-center gap-2">
-              <Database size={18} className="text-gray-400" />
-              <select value={selectedDb} onChange={(e) => onSelectDb(e.target.value)} className="px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00764c]">
+              <Database size={18} style={{ color: 'var(--muted-fg)' }} />
+              <select 
+                value={selectedDb} 
+                onChange={(e) => onSelectDb(e.target.value)} 
+                className="px-3 py-2 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#00764c]"
+                style={{ backgroundColor: 'var(--card-bg)', color: 'var(--fg)', border: '1px solid var(--border-color)' }}
+              >
                 {databases.map(db => (
                   <option key={db.source_id} value={db.source_id}>{db.name}</option>
                 ))}
@@ -80,7 +85,7 @@ export function ConversationSidebar({ conversations, currentConversationId, onLo
 export function LoadingIndicator({ loading, onStop }) {
   if (!loading) return null
   return (
-    <div className="flex items-center gap-3 text-gray-500">
+    <div className="flex items-center gap-3" style={{ color: 'var(--muted-fg)' }}>
       <Loader2 size={20} className="animate-spin" />
       <span className="text-sm">Analyzing...</span>
       <button onClick={onStop} className="ml-auto px-3 py-1.5 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 flex items-center gap-2 text-sm">
@@ -102,7 +107,8 @@ export function InputBar({ input, setInput, onSubmit, disabled, loading }) {
             onChange={(e) => setInput(e.target.value)} 
             placeholder="Ask a question..." 
             disabled={disabled} 
-            className="w-full pl-6 pr-16 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#00764c] disabled:bg-gray-100" 
+            className="w-full pl-6 pr-16 py-3 rounded-full focus:outline-none focus:ring-2 focus:ring-[#00764c] disabled:opacity-50" 
+            style={{ backgroundColor: 'var(--card-bg)', color: 'var(--fg)', border: '1px solid var(--border-color)' }}
           />
           <button 
             type="submit" 
