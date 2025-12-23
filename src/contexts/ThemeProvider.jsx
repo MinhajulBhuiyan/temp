@@ -1,14 +1,14 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext({
-  theme: 'light',
+  theme: 'system',
   setTheme: () => null,
 })
 
 export function ThemeProvider({ children }) {
   const [theme, setTheme] = useState(() => {
     const stored = localStorage.getItem('theme')
-    return stored || 'light'
+    return stored || 'system'
   })
 
   useEffect(() => {
