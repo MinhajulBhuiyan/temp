@@ -4,7 +4,7 @@ export default function SettingsPage() {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="border-b border-gray-200 bg-white px-8 py-6">
+      <div className="border-b border-gray-200 bg-white flex items-center px-3" style={{ height: '72px' }}>
         <h1 className="text-3xl font-semibold text-gray-900 flex items-center gap-2">
           <Settings className="w-8 h-8" />
           Settings
