@@ -36,7 +36,7 @@ export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelect
             </div>
           )}
 
-          <button onClick={onNew} className="px-4 py-2 text-white rounded-lg transition-colors flex items-center gap-2 text-sm" style={{ backgroundColor: '#21c063' }}>
+          <button onClick={onNew} className="px-4 py-2 text-white rounded-lg transition-colors flex items-center gap-2 text-sm font-semibold tracking-wide" style={{ backgroundColor: '#188e49' }}>
             <Plus size={16} />
             New Chat
           </button>

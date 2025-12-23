@@ -88,7 +88,7 @@ export default function SettingsPage() {
 
             <div className="rounded-lg p-6" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
               <div className="text-sm mb-1" style={{ color: 'var(--muted-fg)' }}>Status</div>
-              <div className="text-lg font-semibold text-green-600 flex items-center gap-2">
+              <div className="text-lg font-semibold flex items-center gap-2" style={{ color: '#21c063' }}>
                 <CheckCircle2 className="w-5 h-5" />
                 Operational
               </div>

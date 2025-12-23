@@ -122,7 +122,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
               className="w-10 h-10 object-contain group-hover:opacity-0 transition-opacity"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#21c063] text-white">
+              <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#188e49] text-white">
                 <PanelRightClose size={20} />
               </div>
             </div>
@@ -141,7 +141,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
                 setCollapsed(true)
                 try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
               }}
-              className="ml-auto w-9 h-9 rounded-lg transition-colors flex items-center justify-center hover:bg-[#21c063] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              className="ml-auto w-9 h-9 rounded-lg transition-colors flex items-center justify-center hover:bg-[#188e49] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
               title="Collapse sidebar"
               aria-pressed={collapsed}
             >
