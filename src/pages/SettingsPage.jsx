@@ -7,7 +7,15 @@ export default function SettingsPage() {
   return (
     <div className="h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-center px-3" style={{ height: '72px', borderBottom: '1px solid var(--border-color)', backgroundColor: 'var(--card-bg)' }}>
+      <div
+        className="flex items-center px-3"
+        style={{
+          height: '72px',
+          borderBottom: '1px solid var(--border-color)',
+          backgroundColor: 'var(--card-bg)',
+          boxShadow: '0 1px 3px rgba(2,6,23,0.06)'
+        }}
+      >
         <h1 className="text-3xl font-semibold flex items-center gap-2" style={{ color: 'var(--fg)' }}>
           <Settings className="w-8 h-8" />
           Settings
