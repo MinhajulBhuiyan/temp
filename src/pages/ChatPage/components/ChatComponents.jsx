@@ -12,8 +12,11 @@ export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelect
         <div className="flex items-center gap-3">
           <button
             onClick={toggleShowSQL}
-            className="px-3 py-2 text-sm rounded-lg flex items-center gap-2 transition-colors duration-150 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200"
-            style={{ backgroundColor: 'var(--muted-bg)', color: 'var(--fg)' }}
+            title={showSQL ? 'Hide SQL' : 'Show SQL'}
+            aria-label={showSQL ? 'Hide SQL' : 'Show SQL'}
+            aria-pressed={showSQL}
+            className="px-3 py-2 text-sm rounded-lg flex items-center gap-2 transition duration-150 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-200 hover:shadow-sm cursor-pointer hover:scale-[1.01] border border-transparent bg-[var(--muted-bg)] text-[var(--fg)] hover:bg-[var(--sql-toggle-hover)] hover:border-[var(--sql-toggle-hover)]"
+            style={{ transition: 'transform 120ms ease' }}
           >
             {showSQL ? <Eye size={16} /> : <EyeOff size={16} />}
             <span className="text-xs">{showSQL ? 'Hide' : 'Show'} SQL</span>
