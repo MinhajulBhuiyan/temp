@@ -24,10 +24,10 @@ export default function ChatPageContainer() {
 				<div className="w-full max-w-4xl px-8 relative z-10">
 					<div className="relative">
 						<div
-							className="relative flex flex-col rounded-2xl prompt-box transition-all duration-200"
+							className="relative flex flex-col rounded-2xl prompt-box transition-all duration-200 border"
 							style={{ 
 								backgroundColor: 'var(--prompt-bg)', 
-								border: '1.5px solid #188e49',
+								borderColor: '#188e49',
 								boxShadow: '0 8px 24px rgba(24, 142, 73, 0.08)'
 							}}
 						>

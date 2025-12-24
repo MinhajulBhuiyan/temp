@@ -176,17 +176,37 @@ export default function Sidebar({ currentPage, onNavigate }) {
               key={item.id}
               onClick={() => onNavigate(item.id)}
               title={item.label}
-              className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm transition-colors mb-0.5 ${collapsed ? 'justify-center' : ''} cursor-pointer`}
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm transition-all duration-200 mb-0.5 ${collapsed ? 'justify-center' : ''} cursor-pointer border`}
               style={{
-                backgroundColor: isActive ? 'rgba(0, 118, 76, 0.1)' : 'transparent',
-                color: isActive ? '#188e49' : 'var(--fg)',
-                fontWeight: isActive ? 650 : 400
+                backgroundColor: isActive ? '#188e49' : 'transparent',
+                borderColor: isActive ? '#188e49' : 'transparent',
+                fontWeight: isActive ? 550 : 400
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.backgroundColor = 'rgba(0,118,76,0.08)'
+                  e.currentTarget.style.borderColor = '#188e49'
+                  const icon = e.currentTarget.querySelector('svg')
+                  const textSpan = e.currentTarget.querySelector('span:last-child')
+                  if (icon) icon.style.color = '#188e49'
+                  if (textSpan) textSpan.style.color = '#188e49'
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.backgroundColor = 'transparent'
+                  e.currentTarget.style.borderColor = 'transparent'
+                  const icon = e.currentTarget.querySelector('svg')
+                  const textSpan = e.currentTarget.querySelector('span:last-child')
+                  if (icon) icon.style.color = 'var(--fg)'
+                  if (textSpan) textSpan.style.color = 'var(--fg)'
+                }
               }}
             >
               <span className={`${collapsed ? '' : 'w-6'} flex-shrink-0 flex items-center justify-center`}>
-                <Icon size={18} />
+                <Icon size={18} style={{ color: isActive ? '#ffffff' : 'var(--fg)', transition: 'color 0.2s' }} />
               </span>
-              <span className={`${collapsed ? 'hidden' : 'block'} truncate`}>{item.label}</span>
+              <span className={`${collapsed ? 'hidden' : 'block'} truncate`} style={{ color: isActive ? '#ffffff' : 'var(--fg)', transition: 'color 0.2s' }}>{item.label}</span>
             </button>
           )
         })}

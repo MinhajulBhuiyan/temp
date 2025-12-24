@@ -69,6 +69,26 @@ export default function SettingsPage() {
                   borderColor: theme === 'light' ? '#188e49' : 'var(--border-color)',
                   backgroundColor: theme === 'light' ? '#188e49' : 'var(--card-bg)'
                 }}
+                onMouseEnter={(e) => {
+                  if (theme !== 'light') {
+                    e.currentTarget.style.backgroundColor = 'rgba(0,118,76,0.08)'
+                    e.currentTarget.style.borderColor = '#188e49'
+                    const icon = e.currentTarget.querySelector('svg')
+                    const span = e.currentTarget.querySelector('span')
+                    if (icon) icon.style.color = '#188e49'
+                    if (span) span.style.color = '#188e49'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (theme !== 'light') {
+                    e.currentTarget.style.backgroundColor = 'var(--card-bg)'
+                    e.currentTarget.style.borderColor = 'var(--border-color)'
+                    const icon = e.currentTarget.querySelector('svg')
+                    const span = e.currentTarget.querySelector('span')
+                    if (icon) icon.style.color = 'var(--muted-fg)'
+                    if (span) span.style.color = 'var(--fg)'
+                  }
+                }}
               >
                 <Sun className="w-5 h-5" style={{ color: theme === 'light' ? '#ffffff' : 'var(--muted-fg)' }} />
                 <span className="text-sm font-medium" style={{ color: theme === 'light' ? '#ffffff' : 'var(--fg)' }}>
@@ -84,6 +104,26 @@ export default function SettingsPage() {
                   borderColor: theme === 'dark' ? '#188e49' : 'var(--border-color)',
                   backgroundColor: theme === 'dark' ? '#188e49' : 'var(--card-bg)'
                 }}
+                onMouseEnter={(e) => {
+                  if (theme !== 'dark') {
+                    e.currentTarget.style.backgroundColor = 'rgba(0,118,76,0.08)'
+                    e.currentTarget.style.borderColor = '#188e49'
+                    const icon = e.currentTarget.querySelector('svg')
+                    const span = e.currentTarget.querySelector('span')
+                    if (icon) icon.style.color = '#188e49'
+                    if (span) span.style.color = '#188e49'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (theme !== 'dark') {
+                    e.currentTarget.style.backgroundColor = 'var(--card-bg)'
+                    e.currentTarget.style.borderColor = 'var(--border-color)'
+                    const icon = e.currentTarget.querySelector('svg')
+                    const span = e.currentTarget.querySelector('span')
+                    if (icon) icon.style.color = 'var(--muted-fg)'
+                    if (span) span.style.color = 'var(--fg)'
+                  }
+                }}
               >
                 <Moon className="w-5 h-5" style={{ color: theme === 'dark' ? '#ffffff' : 'var(--muted-fg)' }} />
                 <span className="text-sm font-medium" style={{ color: theme === 'dark' ? '#ffffff' : 'var(--fg)' }}>
@@ -98,6 +138,26 @@ export default function SettingsPage() {
                 style={{
                   borderColor: theme === 'system' ? '#188e49' : 'var(--border-color)',
                   backgroundColor: theme === 'system' ? '#188e49' : 'var(--card-bg)'
+                }}
+                onMouseEnter={(e) => {
+                  if (theme !== 'system') {
+                    e.currentTarget.style.backgroundColor = 'rgba(0,118,76,0.08)'
+                    e.currentTarget.style.borderColor = '#188e49'
+                    const icon = e.currentTarget.querySelector('svg')
+                    const span = e.currentTarget.querySelector('span')
+                    if (icon) icon.style.color = '#188e49'
+                    if (span) span.style.color = '#188e49'
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (theme !== 'system') {
+                    e.currentTarget.style.backgroundColor = 'var(--card-bg)'
+                    e.currentTarget.style.borderColor = 'var(--border-color)'
+                    const icon = e.currentTarget.querySelector('svg')
+                    const span = e.currentTarget.querySelector('span')
+                    if (icon) icon.style.color = 'var(--muted-fg)'
+                    if (span) span.style.color = 'var(--fg)'
+                  }
                 }}
               >
                 <Monitor className="w-5 h-5" style={{ color: theme === 'system' ? '#ffffff' : 'var(--muted-fg)' }} />
