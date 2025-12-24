@@ -1,14 +1,47 @@
+import { useEffect, useState } from 'react'
 import { Settings, Sun, Moon, Monitor } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeProvider'
 
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme()
 
+  const [apiBaseUrl, setApiBaseUrl] = useState(() => localStorage.getItem('apiBaseUrl') || 'http://localhost:8000')
+  const [showSQLDefault, setShowSQLDefault] = useState(() => {
+    const v = localStorage.getItem('showSQLDefault')
+    return v === null ? true : v === 'true'
+  })
+  const [enableGrid, setEnableGrid] = useState(() => {
+    const v = localStorage.getItem('enableGrid')
+    return v === null ? true : v === 'true'
+  })
+  const [currentPhase, setCurrentPhase] = useState(() => localStorage.getItem('currentPhase') || 'Week 1 - Discovery Complete')
+  const [enableTelemetry, setEnableTelemetry] = useState(() => localStorage.getItem('enableTelemetry') === 'true')
+
+  useEffect(() => {
+    localStorage.setItem('apiBaseUrl', apiBaseUrl)
+  }, [apiBaseUrl])
+
+  useEffect(() => {
+    localStorage.setItem('showSQLDefault', showSQLDefault)
+  }, [showSQLDefault])
+
+  useEffect(() => {
+    localStorage.setItem('enableGrid', enableGrid)
+  }, [enableGrid])
+
+  useEffect(() => {
+    localStorage.setItem('currentPhase', currentPhase)
+  }, [currentPhase])
+
+  useEffect(() => {
+    localStorage.setItem('enableTelemetry', enableTelemetry)
+  }, [enableTelemetry])
+
   return (
-    <div className="h-full flex flex-col">
+    <div className={`h-full flex flex-col ${enableGrid ? 'circuit-pattern' : ''}`}>
       {/* Header */}
       <div
-        className="flex items-center px-3"
+        className="flex items-center px-3 relative z-20"
         style={{
           height: '72px',
           borderBottom: '1px solid var(--border-color)',
@@ -22,31 +55,21 @@ export default function SettingsPage() {
         </h1>
       </div>
 
-      {/* Content Area with Pattern */}
-      <div className="flex-1 overflow-y-auto circuit-pattern">
+      {/* Content Area */}
+      <div className="flex-1 overflow-y-auto relative z-10">
         <div className="max-w-4xl mx-auto p-8 relative z-10">
           {/* Appearance Section */}
-          <div className="mb-12">
-            <h2 className="text-xl font-semibold mb-6" style={{ color: 'var(--fg)' }}>Appearance</h2>
-            
+          <div className="mb-8">
+            <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--fg)' }}>Appearance</h2>
+
             <div className="flex gap-3 mt-4">
               {/* Light Theme */}
-              <button 
+              <button
                 onClick={() => setTheme('light')}
                 className="flex flex-col items-center gap-2 px-8 py-4 rounded-lg border transition-all cursor-pointer"
                 style={{
                   borderColor: theme === 'light' ? '#188e49' : 'var(--border-color)',
                   backgroundColor: theme === 'light' ? '#188e49' : 'var(--card-bg)'
-                }}
-                onMouseEnter={(e) => {
-                  if (theme !== 'light') {
-                    e.currentTarget.style.backgroundColor = 'var(--sql-toggle-hover)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (theme !== 'light') {
-                    e.currentTarget.style.backgroundColor = 'var(--card-bg)'
-                  }
                 }}
               >
                 <Sun className="w-5 h-5" style={{ color: theme === 'light' ? '#ffffff' : 'var(--muted-fg)' }} />
@@ -56,22 +79,12 @@ export default function SettingsPage() {
               </button>
 
               {/* Dark Theme */}
-              <button 
+              <button
                 onClick={() => setTheme('dark')}
                 className="flex flex-col items-center gap-2 px-8 py-4 rounded-lg border transition-all cursor-pointer"
                 style={{
                   borderColor: theme === 'dark' ? '#188e49' : 'var(--border-color)',
                   backgroundColor: theme === 'dark' ? '#188e49' : 'var(--card-bg)'
-                }}
-                onMouseEnter={(e) => {
-                  if (theme !== 'dark') {
-                    e.currentTarget.style.backgroundColor = 'var(--sql-toggle-hover)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (theme !== 'dark') {
-                    e.currentTarget.style.backgroundColor = 'var(--card-bg)'
-                  }
                 }}
               >
                 <Moon className="w-5 h-5" style={{ color: theme === 'dark' ? '#ffffff' : 'var(--muted-fg)' }} />
@@ -81,22 +94,12 @@ export default function SettingsPage() {
               </button>
 
               {/* System Theme */}
-              <button 
+              <button
                 onClick={() => setTheme('system')}
                 className="flex flex-col items-center gap-2 px-8 py-4 rounded-lg border transition-all cursor-pointer"
                 style={{
                   borderColor: theme === 'system' ? '#188e49' : 'var(--border-color)',
                   backgroundColor: theme === 'system' ? '#188e49' : 'var(--card-bg)'
-                }}
-                onMouseEnter={(e) => {
-                  if (theme !== 'system') {
-                    e.currentTarget.style.backgroundColor = 'var(--sql-toggle-hover)'
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (theme !== 'system') {
-                    e.currentTarget.style.backgroundColor = 'var(--card-bg)'
-                  }
                 }}
               >
                 <Monitor className="w-5 h-5" style={{ color: theme === 'system' ? '#ffffff' : 'var(--muted-fg)' }} />
@@ -104,6 +107,74 @@ export default function SettingsPage() {
                   System
                 </span>
               </button>
+            </div>
+          </div>
+
+          {/* System Information & Controls */}
+          <div className="mb-8">
+            <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--fg)' }}>System Information</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div className="rounded-lg p-6" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
+                <label className="text-sm mb-1 block" style={{ color: 'var(--muted-fg)' }}>API Base URL</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    value={apiBaseUrl}
+                    onChange={(e) => setApiBaseUrl(e.target.value)}
+                    className="w-full px-3 py-2 rounded border" 
+                    style={{ backgroundColor: 'var(--bg)', border: '1px solid var(--border-color)', color: 'var(--fg)' }}
+                  />
+                </div>
+              </div>
+
+              <div className="rounded-lg p-6" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
+                <label className="text-sm mb-1 block" style={{ color: 'var(--muted-fg)' }}>Version</label>
+                <div className="text-lg font-semibold" style={{ color: 'var(--fg)' }}>1.0.0</div>
+              </div>
+
+              <div className="rounded-lg p-6" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
+                <label className="text-sm mb-1 block" style={{ color: 'var(--muted-fg)' }}>Status</label>
+                <div className="text-lg font-semibold flex items-center gap-2" style={{ color: '#188e49' }}>
+                  Operational
+                </div>
+              </div>
+
+              <div className="rounded-lg p-6" style={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)' }}>
+                <label className="text-sm mb-1 block" style={{ color: 'var(--muted-fg)' }}>Current Phase</label>
+                <input
+                  value={currentPhase}
+                  onChange={(e) => setCurrentPhase(e.target.value)}
+                  className="w-full px-3 py-2 rounded border"
+                  style={{ backgroundColor: 'var(--bg)', border: '1px solid var(--border-color)', color: 'var(--fg)' }}
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6">
+              <label className="flex items-center gap-2">
+                <input type="checkbox" checked={showSQLDefault} onChange={(e) => setShowSQLDefault(e.target.checked)} />
+                <span style={{ color: 'var(--fg)' }} className="ml-2">Show SQL by default</span>
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input type="checkbox" checked={enableGrid} onChange={(e) => setEnableGrid(e.target.checked)} />
+                <span style={{ color: 'var(--fg)' }} className="ml-2">Enable background grid</span>
+              </label>
+
+              <label className="flex items-center gap-2">
+                <input type="checkbox" checked={enableTelemetry} onChange={(e) => setEnableTelemetry(e.target.checked)} />
+                <span style={{ color: 'var(--fg)' }} className="ml-2">Enable telemetry</span>
+              </label>
+            </div>
+          </div>
+
+          <div className="pt-4" style={{ borderTop: '1px solid var(--border-color)' }}>
+            <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--fg)' }}>Configuration</h2>
+            <div className="rounded-lg p-6" style={{ backgroundColor: '#1e293b', border: '1px solid var(--border-color)' }}>
+              <p className="flex items-center gap-2" style={{ color: 'var(--muted-fg)' }}>
+                <Settings className="w-5 h-5" style={{ color: '#188e49' }} />
+                Advanced settings and configuration options coming in Week 2
+              </p>
             </div>
           </div>
         </div>
