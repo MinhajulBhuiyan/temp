@@ -103,23 +103,24 @@ export default function Sidebar({ currentPage, onNavigate }) {
   ]
 
   return (
-    <div className={`${collapsed ? 'w-14' : 'w-64'} h-screen flex flex-col transition-all duration-200 shadow-sm`} style={{ backgroundColor: 'var(--muted-bg)', borderRight: '1px solid var(--border-color)' }}>
+    <div className={`${collapsed ? 'w-14' : 'w-64'} h-screen flex flex-col transition-all duration-200 shadow-sm relative z-10`} style={{ backgroundColor: 'var(--muted-bg)', borderRight: '1px solid var(--border-color)' }}>
       {/* Logo / collapsed icon */}
       <div className={`flex items-center justify-between shadow-sm ${collapsed ? 'justify-center' : 'px-3'}`} style={{ height: '72px', borderBottom: '1px solid var(--border-color)', backgroundColor: 'var(--card-bg)' }}>
-        {collapsed ? (
+          {collapsed ? (
           // When collapsed: show logo with expand icon on hover
           <button
             onClick={(e) => {
               setCollapsed(false)
-              try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
+                try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
+                try { onNavigate && onNavigate('chat') } catch (err) {}
             }}
-            className="relative w-full h-full flex items-center justify-center group transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+            className="relative w-full h-full flex items-center justify-center group transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 cursor-pointer"
             title="Expand sidebar"
           >
             <img
               src="/logo.png"
               alt="DataSense"
-              className="w-10 h-10 object-contain group-hover:opacity-0 transition-opacity"
+              className="w-10 h-10 object-contain group-hover:opacity-0 transition-opacity cursor-pointer"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
               <div className="w-9 h-9 flex items-center justify-center rounded-lg bg-[#188e49] text-white">
@@ -129,11 +130,17 @@ export default function Sidebar({ currentPage, onNavigate }) {
           </button>
         ) : (
           <>
-            <img
-              src="/logo.png"
-              alt="DataSense"
-              className="w-12 h-12 object-contain ml-2"
-            />
+            <button
+              onClick={() => { try { onNavigate && onNavigate('chat') } catch (err) {} }}
+              className="flex items-center"
+              title="Go to AI Chat Assistant"
+            >
+              <img
+                src="/logo.png"
+                alt="DataSense"
+                className="w-12 h-12 object-contain ml-2 cursor-pointer"
+              />
+            </button>
 
             {/* collapse toggle to the right of the logo */}
             <button
@@ -141,7 +148,7 @@ export default function Sidebar({ currentPage, onNavigate }) {
                 setCollapsed(true)
                 try { if (e?.nativeEvent?.detail > 0) e.currentTarget.blur() } catch (err) {}
               }}
-              className="ml-auto w-9 h-9 rounded-lg transition-colors flex items-center justify-center hover:bg-[#188e49] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300"
+              className="ml-auto w-9 h-9 rounded-lg transition-colors flex items-center justify-center hover:bg-[#188e49] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-300 cursor-pointer"
               title="Collapse sidebar"
               aria-pressed={collapsed}
             >
@@ -164,12 +171,12 @@ export default function Sidebar({ currentPage, onNavigate }) {
           const Icon = item.icon
           const isActive = currentPage === item.id
 
-          return (
+            return (
             <button
               key={item.id}
               onClick={() => onNavigate(item.id)}
               title={item.label}
-              className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm transition-colors mb-0.5 ${collapsed ? 'justify-center' : ''}`}
+              className={`w-full flex items-center gap-2.5 px-3 py-2.5 rounded-md text-sm transition-colors mb-0.5 ${collapsed ? 'justify-center' : ''} cursor-pointer`}
               style={{
                 backgroundColor: isActive ? 'rgba(0, 118, 76, 0.1)' : 'transparent',
                 color: isActive ? '#188e49' : 'var(--fg)',

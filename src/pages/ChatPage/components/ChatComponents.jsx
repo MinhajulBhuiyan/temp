@@ -2,7 +2,7 @@ import { Send, Loader2, Database, MessageSquare, Plus, StopCircle, Eye, EyeOff, 
 
 export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelectDb, onNew }) {
   return (
-    <div className="px-6 flex items-center shadow-sm" style={{ height: '72px', backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
+    <div className="px-6 flex items-center shadow-sm relative z-20" style={{ height: '72px', backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
       <div className="flex items-center justify-between w-full">
         <div>
           <h1 className="text-2xl font-semibold" style={{ color: 'var(--fg)' }}>DataSense</h1>
@@ -39,7 +39,7 @@ export function Header({ showSQL, toggleShowSQL, databases, selectedDb, onSelect
             </div>
           )}
 
-          <button onClick={onNew} className="px-4 py-2 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm font-semibold tracking-wide" style={{ backgroundColor: '#188e49' }}>
+          <button onClick={onNew} className="px-4 py-2 text-white rounded-lg transition-colors flex items-center justify-center gap-2 text-sm font-semibold tracking-wide cursor-pointer" style={{ backgroundColor: '#188e49' }}>
             <SquarePen size={16} strokeWidth={2.5} />
             New Chat
           </button>

@@ -15,6 +15,10 @@ export default function SettingsPage() {
     return v === null ? true : v === 'true'
   })
   const [currentPhase, setCurrentPhase] = useState(() => localStorage.getItem('currentPhase') || 'Week 1 - Discovery Complete')
+  const [gridOpacity, setGridOpacity] = useState(() => {
+    const v = localStorage.getItem('gridOpacity')
+    return v === null ? 50 : parseInt(v)
+  })
 
   useEffect(() => {
     localStorage.setItem('apiBaseUrl', apiBaseUrl)
@@ -32,9 +36,32 @@ export default function SettingsPage() {
     localStorage.setItem('currentPhase', currentPhase)
   }, [currentPhase])
 
+  useEffect(() => {
+    localStorage.setItem('gridOpacity', gridOpacity)
+  }, [gridOpacity])
+
+  // Apply/remove global grid class on document root when setting changes
+  useEffect(() => {
+    try {
+      const root = window.document.documentElement
+      if (enableGrid) root.classList.add('circuit-pattern')
+      else root.classList.remove('circuit-pattern')
+    } catch (err) {
+      // ignore in non-browser environments
+    }
+  }, [enableGrid])
+
+  // Update grid opacity CSS variable
+  useEffect(() => {
+    try {
+      document.documentElement.style.setProperty('--grid-opacity', (gridOpacity / 100).toFixed(2))
+    } catch (err) {
+      // ignore in non-browser environments
+    }
+  }, [gridOpacity])
 
   return (
-    <div className={`h-full flex flex-col ${enableGrid ? 'circuit-pattern' : ''}`}>
+    <div className="h-full flex flex-col">
       {/* Header */}
       <div
         className="flex items-center px-3 relative z-20"
@@ -146,7 +173,7 @@ export default function SettingsPage() {
               </div>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-start gap-6 flex-wrap">
               <div className="custom-toggle-container">
                 <div className="custom-toggle">
                   <input
@@ -176,6 +203,26 @@ export default function SettingsPage() {
                   </label>
                 </div>
               </div>
+
+              {/* Grid Opacity Slider - beside the toggles */}
+              {enableGrid && (
+                <div className="flex items-center gap-3">
+                  <label className="text-sm font-medium whitespace-nowrap" style={{ color: 'var(--fg)' }}>
+                    Grid Opacity: {gridOpacity}%
+                  </label>
+                  <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={gridOpacity}
+                    onChange={(e) => setGridOpacity(parseInt(e.target.value))}
+                    className="grid-opacity-slider"
+                    style={{
+                      width: '200px'
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </div>
 

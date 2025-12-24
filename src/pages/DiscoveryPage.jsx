@@ -102,9 +102,9 @@ export default function DiscoveryPage() {
   }
 
   return (
-    <div className="h-full flex flex-col circuit-pattern" style={{ backgroundColor: 'var(--muted-bg)' }}>
+    <div className="h-full flex flex-col" style={{ backgroundColor: 'var(--muted-bg)' }}>
       {/* Header */}
-      <div className="px-8 py-6" style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
+      <div className="px-8 py-6 relative z-20" style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
         <h1 className="text-3xl font-semibold flex items-center gap-3" style={{ color: 'var(--fg)' }}>
           <Database size={28} style={{ color: '#188e49' }} />
           Database Discovery

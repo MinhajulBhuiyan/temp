@@ -81,7 +81,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  opacity: 0.50;
+  opacity: var(--grid-opacity, 0.50);
   pointer-events: none;
   z-index: 0;
   background-image: repeating-linear-gradient(
@@ -276,4 +276,80 @@ body {
   to {
     transform: translateY(-0.1em);
   }
+}
+
+/* Custom Range Slider for Grid Opacity */
+.grid-opacity-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  overflow: hidden;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 8px;
+  background: var(--muted-bg);
+  border: 2px solid #188e49;
+}
+
+.grid-opacity-slider::-webkit-slider-runnable-track {
+  background: var(--muted-bg);
+  height: 40px;
+}
+
+.grid-opacity-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 40px;
+  background: #fff;
+  box-shadow: -400px 0 0 400px #188e49;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+}
+
+.grid-opacity-slider::-moz-range-track {
+  height: 40px;
+  background: var(--muted-bg);
+}
+
+.grid-opacity-slider::-moz-range-thumb {
+  background: #fff;
+  height: 40px;
+  width: 20px;
+  border: 3px solid var(--border-color);
+  border-radius: 0;
+  box-shadow: -400px 0 0 400px #188e49;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.grid-opacity-slider::-ms-fill-lower {
+  background: #188e49;
+}
+
+.grid-opacity-slider::-ms-thumb {
+  background: #fff;
+  border: 2px solid var(--border-color);
+  height: 40px;
+  width: 20px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.grid-opacity-slider::-ms-ticks-after {
+  display: none;
+}
+
+.grid-opacity-slider::-ms-ticks-before {
+  display: none;
+}
+
+.grid-opacity-slider::-ms-track {
+  background: var(--muted-bg);
+  color: transparent;
+  height: 40px;
+  border: none;
+}
+
+.grid-opacity-slider::-ms-tooltip {
+  display: none;
 }

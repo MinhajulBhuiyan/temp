@@ -19,8 +19,8 @@ export default function ChatPageContainer() {
 				onNew={chat.startNewConversation} 
 			/>
 
-			{/* Content Area with Pattern */}
-			<div className="flex-1 overflow-y-auto circuit-pattern flex items-center justify-center">
+			{/* Content Area */}
+			<div className="flex-1 overflow-y-auto flex items-center justify-center">
 				<div className="w-full max-w-5xl px-8 relative z-10">
 					<div className="relative">
 						<div
@@ -45,7 +45,7 @@ export default function ChatPageContainer() {
 										e.target.style.height = e.target.scrollHeight + 'px'
 									}}
 									className="w-full px-4 py-3 resize-none bg-transparent border-none focus:outline-none focus-visible:ring-0 focus-visible:ring-offset-0 align-top leading-normal"
-									placeholder="Ask me anything..."
+									placeholder="Ask me question..."
 									spellCheck="false"
 								/>
 							</div>
