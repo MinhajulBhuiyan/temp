@@ -25,6 +25,8 @@
   --border-color: #e2e8f0;
   --sql-toggle-hover: #d4ede1;
   --prompt-bg: #f5f5f5;
+  
+  color-scheme: light;
 }
 
 .dark {
@@ -37,6 +39,25 @@
   --border-color: #334155;
   --sql-toggle-hover: #1b313d;
   --prompt-bg: #1e293b;
+  
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  body,
+  div,
+  button,
+  input,
+  textarea,
+  select {
+    transition: background-color 0.2s ease-in-out, 
+                color 0.2s ease-in-out, 
+                border-color 0.2s ease-in-out;
+  }
 }
 
 body {

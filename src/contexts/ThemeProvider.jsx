@@ -13,12 +13,13 @@ export function ThemeProvider({ children }) {
 
   useEffect(() => {
     const root = window.document.documentElement
-    root.classList.remove('light', 'dark')
-
+    
     if (theme === 'system') {
       const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      root.classList.remove('light', 'dark')
       root.classList.add(systemTheme)
     } else {
+      root.classList.remove('light', 'dark')
       root.classList.add(theme)
     }
   }, [theme])

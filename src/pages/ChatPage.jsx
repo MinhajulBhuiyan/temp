@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Paperclip, Mic, Send } from 'lucide-react'
+import { Paperclip, SlidersHorizontal, Send } from 'lucide-react'
 import { Header } from './ChatPage/components/ChatComponents'
 import { useChat } from './ChatPage/core/hooks'
 
@@ -56,18 +56,18 @@ export default function ChatPageContainer() {
 								<div className="absolute left-5 right-5 bottom-3.5 flex items-center justify-between">
 									<div className="flex items-center gap-2">
 										<button
-										className="p-2.5 transition-all duration-200 rounded-lg cursor-pointer hover:scale-105"
+										className="p-2.5 transition-all duration-200 rounded-lg cursor-pointer border border-transparent"
 										style={{ 
 											color: 'var(--muted-fg)', 
 											backgroundColor: 'transparent'
 										}}
 										onMouseEnter={(e) => {
 											e.currentTarget.style.color = '#188e49'
-											e.currentTarget.style.backgroundColor = 'rgba(24, 142, 73, 0.08)'
+											e.currentTarget.style.borderColor = '#188e49'
 										}}
 										onMouseLeave={(e) => {
 											e.currentTarget.style.color = 'var(--muted-fg)'
-											e.currentTarget.style.backgroundColor = 'transparent'
+											e.currentTarget.style.borderColor = 'transparent'
 										}}
 										aria-label="Attach file"
 										type="button"
@@ -75,23 +75,23 @@ export default function ChatPageContainer() {
 										<Paperclip className="w-[18px] h-[18px]" />
 										</button>
 										<button
-										className="p-2.5 transition-all duration-200 rounded-lg cursor-pointer hover:scale-105"
+										className="p-2.5 transition-all duration-200 rounded-lg cursor-pointer border border-transparent"
 										style={{ 
 											color: 'var(--muted-fg)', 
 											backgroundColor: 'transparent'
 										}}
 										onMouseEnter={(e) => {
 											e.currentTarget.style.color = '#188e49'
-											e.currentTarget.style.backgroundColor = 'rgba(24, 142, 73, 0.08)'
+											e.currentTarget.style.borderColor = '#188e49'
 										}}
 										onMouseLeave={(e) => {
 											e.currentTarget.style.color = 'var(--muted-fg)'
-											e.currentTarget.style.backgroundColor = 'transparent'
+											e.currentTarget.style.borderColor = 'transparent'
 										}}
-										aria-label="Voice input"
+										aria-label="Tools"
 										type="button"
 									>
-										<Mic className="w-[18px] h-[18px]" />
+									<SlidersHorizontal className="w-[18px] h-[18px]" />
 										</button>
 									</div>
 									<button
