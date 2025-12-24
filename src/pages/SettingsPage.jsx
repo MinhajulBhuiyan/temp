@@ -10,15 +10,7 @@ export default function SettingsPage() {
     const v = localStorage.getItem('showSQLDefault')
     return v === null ? true : v === 'true'
   })
-  const [enableGrid, setEnableGrid] = useState(() => {
-    const v = localStorage.getItem('enableGrid')
-    return v === null ? true : v === 'true'
-  })
   const [currentPhase, setCurrentPhase] = useState(() => localStorage.getItem('currentPhase') || 'Week 1 - Discovery Complete')
-  const [gridOpacity, setGridOpacity] = useState(() => {
-    const v = localStorage.getItem('gridOpacity')
-    return v === null ? 50 : parseInt(v)
-  })
 
   useEffect(() => {
     localStorage.setItem('apiBaseUrl', apiBaseUrl)
@@ -28,37 +20,20 @@ export default function SettingsPage() {
     localStorage.setItem('showSQLDefault', showSQLDefault)
   }, [showSQLDefault])
 
+  // Ensure any legacy background grid classes/vars are removed
   useEffect(() => {
-    localStorage.setItem('enableGrid', enableGrid)
-  }, [enableGrid])
+    try {
+      const root = window.document.documentElement
+      root.classList.remove('circuit-pattern')
+      root.style.removeProperty('--grid-opacity')
+    } catch (err) {
+      // ignore in non-browser environments
+    }
+  }, [])
 
   useEffect(() => {
     localStorage.setItem('currentPhase', currentPhase)
   }, [currentPhase])
-
-  useEffect(() => {
-    localStorage.setItem('gridOpacity', gridOpacity)
-  }, [gridOpacity])
-
-  // Apply/remove global grid class on document root when setting changes
-  useEffect(() => {
-    try {
-      const root = window.document.documentElement
-      if (enableGrid) root.classList.add('circuit-pattern')
-      else root.classList.remove('circuit-pattern')
-    } catch (err) {
-      // ignore in non-browser environments
-    }
-  }, [enableGrid])
-
-  // Update grid opacity CSS variable
-  useEffect(() => {
-    try {
-      document.documentElement.style.setProperty('--grid-opacity', (gridOpacity / 100).toFixed(2))
-    } catch (err) {
-      // ignore in non-browser environments
-    }
-  }, [gridOpacity])
 
   return (
     <div className="h-full flex flex-col">
@@ -188,41 +163,7 @@ export default function SettingsPage() {
                     Show SQL by default
                   </label>
                 </div>
-
-                <div className="custom-toggle">
-                  <input
-                    id="enable-grid"
-                    type="checkbox"
-                    className="custom-toggle__input"
-                    checked={enableGrid}
-                    onChange={(e) => setEnableGrid(e.target.checked)}
-                  />
-                  <label htmlFor="enable-grid" className="custom-toggle__label">
-                    <span className="custom-toggle__custom" />
-                    Enable background grid
-                  </label>
-                </div>
               </div>
-
-              {/* Grid Opacity Slider - beside the toggles */}
-              {enableGrid && (
-                <div className="flex items-center gap-3">
-                  <label className="text-sm font-medium whitespace-nowrap" style={{ color: 'var(--fg)' }}>
-                    Grid Opacity: {gridOpacity}%
-                  </label>
-                  <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={gridOpacity}
-                    onChange={(e) => setGridOpacity(parseInt(e.target.value))}
-                    className="grid-opacity-slider"
-                    style={{
-                      width: '200px'
-                    }}
-                  />
-                </div>
-              )}
             </div>
           </div>
 

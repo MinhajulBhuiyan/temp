@@ -69,80 +69,7 @@ body {
   background-color: #21c063;
 }
 
-/* Circuit Pattern Background */
-.circuit-pattern {
-  position: relative;
-}
-
-.circuit-pattern::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: var(--grid-opacity, 0.50);
-  pointer-events: none;
-  z-index: 0;
-  background-image: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 19px,
-      var(--border-color) 19px,
-      var(--border-color) 20px,
-      transparent 20px,
-      transparent 39px,
-      var(--border-color) 39px,
-      var(--border-color) 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 19px,
-      var(--border-color) 19px,
-      var(--border-color) 20px,
-      transparent 20px,
-      transparent 39px,
-      var(--border-color) 39px,
-      var(--border-color) 40px
-    ),
-    radial-gradient(
-      circle at 20px 20px,
-      var(--muted-fg) 2px,
-      transparent 2px
-    ),
-    radial-gradient(
-      circle at 40px 40px,
-      var(--muted-fg) 2px,
-      transparent 2px
-    );
-  background-size:
-    40px 40px,
-    40px 40px,
-    40px 40px,
-    40px 40px;
-}
-
-/* Dot Pattern Background */
-.dot-pattern {
-  position: relative;
-}
-
-.dot-pattern::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.08;
-  background-image: radial-gradient(var(--muted-fg) 0.5px, transparent 0.5px);
-  background-size: 10px 10px;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Custom toggle controls (Show SQL, Enable Grid) */
+/* Custom toggle controls */
 .custom-toggle-container {
   display: flex;
   gap: 28px;
@@ -203,42 +130,23 @@ body {
   box-shadow: 0 0 18px var(--accent, #188e49)40;
 }
 
-/* Dot Pattern Background */
-.dot-pattern {
-  position: relative;
-}
 
-.dot-pattern::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.08;
-  background-image: radial-gradient(var(--muted-fg) 5%, transparent 6%),
-    radial-gradient(var(--muted-fg) 5%, transparent 6%);
-  background-position: 0 0, 1.5rem 1.5rem;
-  background-size: 3rem 3rem;
-  pointer-events: none;
-  z-index: 0;
-}
 
-/* Send Button Animation */
 .send-button {
-  font-family: inherit;
-  font-size: 16px;
+   font-family: inherit;
+   font-size: 15px;
   background: #188e49;
-  color: white;
-  padding: 0.7em 1em;
-  padding-left: 0.9em;
-  display: flex;
+  color: #ffffff;
+  padding: 0.55em 0.8em;
+  padding-left: 0.65em;
+  display: inline-flex;
   align-items: center;
   border: none;
   border-radius: 16px;
   overflow: hidden;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
   cursor: pointer;
+  gap: 6px;
 }
 
 .send-button span {
@@ -247,18 +155,25 @@ body {
   transition: all 0.3s ease-in-out;
 }
 
+.send-button .svg-wrapper {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
 .send-button svg {
   display: block;
   transform-origin: center center;
   transition: transform 0.3s ease-in-out;
 }
 
-.send-button:hover .svg-wrapper {
-  animation: fly-1 0.6s ease-in-out infinite alternate;
+.send-button svg {
+  width: 18px;
+  height: 18px;
 }
 
 .send-button:hover svg {
-  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+  transform: translateX(1.4em) rotate(45deg) scale(1.4);
 }
 
 .send-button:hover span {
@@ -267,89 +182,4 @@ body {
 
 .send-button:active {
   transform: scale(0.95);
-}
-
-@keyframes fly-1 {
-  from {
-    transform: translateY(0.1em);
-  }
-  to {
-    transform: translateY(-0.1em);
-  }
-}
-
-/* Custom Range Slider for Grid Opacity */
-.grid-opacity-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  position: relative;
-  overflow: hidden;
-  height: 40px;
-  cursor: pointer;
-  border-radius: 8px;
-  background: var(--muted-bg);
-  border: 2px solid #188e49;
-}
-
-.grid-opacity-slider::-webkit-slider-runnable-track {
-  background: var(--muted-bg);
-  height: 40px;
-}
-
-.grid-opacity-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 20px;
-  height: 40px;
-  background: #fff;
-  box-shadow: -400px 0 0 400px #188e49;
-  border: 2px solid var(--border-color);
-  cursor: pointer;
-}
-
-.grid-opacity-slider::-moz-range-track {
-  height: 40px;
-  background: var(--muted-bg);
-}
-
-.grid-opacity-slider::-moz-range-thumb {
-  background: #fff;
-  height: 40px;
-  width: 20px;
-  border: 3px solid var(--border-color);
-  border-radius: 0;
-  box-shadow: -400px 0 0 400px #188e49;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.grid-opacity-slider::-ms-fill-lower {
-  background: #188e49;
-}
-
-.grid-opacity-slider::-ms-thumb {
-  background: #fff;
-  border: 2px solid var(--border-color);
-  height: 40px;
-  width: 20px;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.grid-opacity-slider::-ms-ticks-after {
-  display: none;
-}
-
-.grid-opacity-slider::-ms-ticks-before {
-  display: none;
-}
-
-.grid-opacity-slider::-ms-track {
-  background: var(--muted-bg);
-  color: transparent;
-  height: 40px;
-  border: none;
-}
-
-.grid-opacity-slider::-ms-tooltip {
-  display: none;
 }

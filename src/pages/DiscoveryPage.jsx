@@ -149,7 +149,7 @@ export default function DiscoveryPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-8 circuit-pattern">
+      <div className="flex-1 overflow-y-auto p-8">
         {activeTab === 'databases' && (
           <div className="max-w-5xl">
             <div className="flex justify-between items-center mb-6">

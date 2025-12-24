@@ -38,32 +38,6 @@ export function ThemeProvider({ children }) {
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [theme])
 
-  // Apply global grid pattern if enabled in localStorage
-  useEffect(() => {
-    try {
-      const enabled = localStorage.getItem('enableGrid')
-      const root = window.document.documentElement
-      if (enabled === 'true') {
-        root.classList.add('circuit-pattern')
-      } else {
-        root.classList.remove('circuit-pattern')
-      }
-
-      // Keep multiple tabs in sync
-      const onStorage = (e) => {
-        if (e.key === 'enableGrid') {
-          if (e.newValue === 'true') root.classList.add('circuit-pattern')
-          else root.classList.remove('circuit-pattern')
-        }
-      }
-
-      window.addEventListener('storage', onStorage)
-      return () => window.removeEventListener('storage', onStorage)
-    } catch (err) {
-      // ignore (SSR or restricted storage)
-    }
-  }, [])
-
   const value = {
     theme,
     setTheme: (newTheme) => {
