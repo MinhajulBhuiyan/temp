@@ -24,6 +24,7 @@
   --muted-fg: #64748b;
   --border-color: #e2e8f0;
   --sql-toggle-hover: #d4ede1;
+  --prompt-bg: #f5f5f5;
 }
 
 .dark {
@@ -35,6 +36,7 @@
   --muted-fg: #94a3b8;
   --border-color: #334155;
   --sql-toggle-hover: #1b313d;
+  --prompt-bg: #1e293b;
 }
 
 body {
@@ -140,6 +142,67 @@ body {
   z-index: 0;
 }
 
+/* Custom toggle controls (Show SQL, Enable Grid) */
+.custom-toggle-container {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+
+.custom-toggle {
+  display: inline-block;
+  position: relative;
+}
+
+.custom-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.custom-toggle__label {
+  display: inline-block;
+  padding-left: 34px;
+  position: relative;
+  font-size: 15px;
+  color: var(--fg);
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: none;
+  transition: color 0.18s ease;
+}
+
+.custom-toggle__custom {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #64748b;
+  transition: all 0.18s ease;
+  background: transparent;
+}
+
+.custom-toggle__input:checked + .custom-toggle__label .custom-toggle__custom {
+  background-color: var(--accent, #188e49);
+  border-color: transparent;
+  transform: translateY(-50%) scale(0.88);
+  box-shadow: 0 0 18px var(--accent, #188e49)80;
+}
+
+.custom-toggle__input:checked + .custom-toggle__label {
+  color: var(--accent, #188e49);
+}
+
+.custom-toggle__label:hover .custom-toggle__custom {
+  transform: translateY(-50%) scale(1.12);
+  border-color: var(--accent, #188e49);
+  box-shadow: 0 0 18px var(--accent, #188e49)40;
+}
+
 /* Dot Pattern Background */
 .dot-pattern {
   position: relative;
@@ -161,3 +224,56 @@ body {
   z-index: 0;
 }
 
+/* Send Button Animation */
+.send-button {
+  font-family: inherit;
+  font-size: 16px;
+  background: #188e49;
+  color: white;
+  padding: 0.7em 1em;
+  padding-left: 0.9em;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.send-button span {
+  display: block;
+  margin-left: 0.3em;
+  transition: all 0.3s ease-in-out;
+}
+
+.send-button svg {
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.send-button:hover .svg-wrapper {
+  animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+
+.send-button:hover svg {
+  transform: translateX(1.2em) rotate(45deg) scale(1.1);
+}
+
+.send-button:hover span {
+  transform: translateX(5em);
+}
+
+.send-button:active {
+  transform: scale(0.95);
+}
+
+@keyframes fly-1 {
+  from {
+    transform: translateY(0.1em);
+  }
+  to {
+    transform: translateY(-0.1em);
+  }
+}
