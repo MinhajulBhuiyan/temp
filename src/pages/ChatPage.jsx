@@ -64,8 +64,9 @@ export default function ChatPageContainer() {
 					onNew={chat.startNewConversation} 
 				/>
 
+			<div className="flex-1 flex flex-col circuit-pattern">
 				<div className="flex-1 overflow-y-auto px-6 py-4">
-					<div className="max-w-5xl mx-auto space-y-4">
+			<div className="max-w-5xl mx-auto space-y-4 relative z-10">
 						{chat.loadingHistory && (
 						<div className="flex items-center justify-center gap-2 py-8" style={{ color: 'var(--muted-fg)' }}>
 							<LoadingIndicator loading={true} />
@@ -119,7 +120,6 @@ export default function ChatPageContainer() {
 					loading={chat.loading} 
 				/>
 			</div>
+			</div>
 		</div>
-	)
-}
-
+	)}

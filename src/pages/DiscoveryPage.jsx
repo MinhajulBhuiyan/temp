@@ -102,7 +102,7 @@ export default function DiscoveryPage() {
   }
 
   return (
-    <div className="h-full flex flex-col" style={{ backgroundColor: 'var(--muted-bg)' }}>
+    <div className="h-full flex flex-col circuit-pattern" style={{ backgroundColor: 'var(--muted-bg)' }}>
       {/* Header */}
       <div className="px-8 py-6" style={{ backgroundColor: 'var(--card-bg)', borderBottom: '1px solid var(--border-color)' }}>
         <h1 className="text-3xl font-semibold flex items-center gap-3" style={{ color: 'var(--fg)' }}>
@@ -149,7 +149,7 @@ export default function DiscoveryPage() {
       </div>
 
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-8">
+      <div className="flex-1 overflow-y-auto p-8 circuit-pattern">
         {activeTab === 'databases' && (
           <div className="max-w-5xl">
             <div className="flex justify-between items-center mb-6">
