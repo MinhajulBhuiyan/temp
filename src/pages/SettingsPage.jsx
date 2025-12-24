@@ -15,7 +15,6 @@ export default function SettingsPage() {
     return v === null ? true : v === 'true'
   })
   const [currentPhase, setCurrentPhase] = useState(() => localStorage.getItem('currentPhase') || 'Week 1 - Discovery Complete')
-  const [enableTelemetry, setEnableTelemetry] = useState(() => localStorage.getItem('enableTelemetry') === 'true')
 
   useEffect(() => {
     localStorage.setItem('apiBaseUrl', apiBaseUrl)
@@ -33,9 +32,6 @@ export default function SettingsPage() {
     localStorage.setItem('currentPhase', currentPhase)
   }, [currentPhase])
 
-  useEffect(() => {
-    localStorage.setItem('enableTelemetry', enableTelemetry)
-  }, [enableTelemetry])
 
   return (
     <div className={`h-full flex flex-col ${enableGrid ? 'circuit-pattern' : ''}`}>
@@ -151,26 +147,47 @@ export default function SettingsPage() {
             </div>
 
             <div className="flex items-center gap-6">
-              <label className="flex items-center gap-2">
-                <input type="checkbox" checked={showSQLDefault} onChange={(e) => setShowSQLDefault(e.target.checked)} />
-                <span style={{ color: 'var(--fg)' }} className="ml-2">Show SQL by default</span>
-              </label>
+              <div className="custom-toggle-container">
+                <div className="custom-toggle">
+                  <input
+                    id="show-sql"
+                    type="checkbox"
+                    className="custom-toggle__input"
+                    checked={showSQLDefault}
+                    onChange={(e) => setShowSQLDefault(e.target.checked)}
+                  />
+                  <label htmlFor="show-sql" className="custom-toggle__label">
+                    <span className="custom-toggle__custom" />
+                    Show SQL by default
+                  </label>
+                </div>
 
-              <label className="flex items-center gap-2">
-                <input type="checkbox" checked={enableGrid} onChange={(e) => setEnableGrid(e.target.checked)} />
-                <span style={{ color: 'var(--fg)' }} className="ml-2">Enable background grid</span>
-              </label>
-
-              <label className="flex items-center gap-2">
-                <input type="checkbox" checked={enableTelemetry} onChange={(e) => setEnableTelemetry(e.target.checked)} />
-                <span style={{ color: 'var(--fg)' }} className="ml-2">Enable telemetry</span>
-              </label>
+                <div className="custom-toggle">
+                  <input
+                    id="enable-grid"
+                    type="checkbox"
+                    className="custom-toggle__input"
+                    checked={enableGrid}
+                    onChange={(e) => setEnableGrid(e.target.checked)}
+                  />
+                  <label htmlFor="enable-grid" className="custom-toggle__label">
+                    <span className="custom-toggle__custom" />
+                    Enable background grid
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
 
           <div className="pt-4" style={{ borderTop: '1px solid var(--border-color)' }}>
             <h2 className="text-xl font-semibold mb-4" style={{ color: 'var(--fg)' }}>Configuration</h2>
-            <div className="rounded-lg p-6" style={{ backgroundColor: '#1e293b', border: '1px solid var(--border-color)' }}>
+            <div
+              className="rounded-lg p-6"
+              style={{
+                backgroundColor: theme === 'dark' ? '#1e293b' : 'var(--card-bg)',
+                border: '1px solid var(--border-color)'
+              }}
+            >
               <p className="flex items-center gap-2" style={{ color: 'var(--muted-fg)' }}>
                 <Settings className="w-5 h-5" style={{ color: '#188e49' }} />
                 Advanced settings and configuration options coming in Week 2
